@@ -1,0 +1,8 @@
+Iniciar
+<form (ngSubmit)="doLogin(usuario)">
+  <input id="nro_personal" name="nro_personal" type="text" [(ngModel)]="usuario.nro_personal" title="Ej: 1234" />
+  <br />
+  <input id="password" name="password" type="password" [(ngModel)]="usuario.password" title="Ej: abc1234" />
+  <br />
+  <button type="submit" class="btn btn-safe">Ingresar</button>
+</form>

@@ -1,0 +1,28 @@
+export const ICONOS = [
+    { icono: '&#xe247;', titulo: 'Estadistica #1' },
+    { icono: '&#xe11f;', titulo: 'Estadistica #2' },
+    { icono: '&#xe263;', titulo: 'Estadistica #3' },
+    { icono: '&#xe0a4;', titulo: 'Estadistica #4' },
+    { icono: '&#xe1f6;', titulo: 'Nuevo' },
+    { icono: '&#xe03f;', titulo: 'Asignacion' },
+    { icono: '&#xe25c;', titulo: 'Retorno' },
+    { icono: '&#xe0f4;', titulo: 'Enlace' },
+    { icono: '&#xe12e;', titulo: 'Subida #1' },
+    { icono: '&#xe1a9;', titulo: 'Inventario' },
+    { icono: '&#xe080;', titulo: 'Almacen #1' },
+    { icono: '&#xe011;', titulo: 'Almacen #2' },
+    { icono: '&#xe00c;', titulo: 'Configuracion #1' },
+    { icono: '&#xe22b;', titulo: 'Configuracion #2' },
+    { icono: '&#xe0a5;', titulo: 'Lista #1' },
+    { icono: '&#xe0a5;', titulo: 'Lista #1' },
+    { icono: '&#xe0da;', titulo: 'Lista #3' },
+    { icono: '&#xe0b8;', titulo: 'Documento #1' },
+    { icono: '&#xe013;', titulo: 'Documento #2' },
+    { icono: '&#xe09f;', titulo: 'Documento #3' },
+    { icono: '&#xe039;', titulo: 'Traslado ' },
+    { icono: '&#xe099;', titulo: 'Impresora' },
+    { icono: '&#xe091;', titulo: 'Mundo' },
+    { icono: '&#xe00f;', titulo: 'Tienda' },
+    { icono: '&#xe163;', titulo: 'Menu' }
+
+];
