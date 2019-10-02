@@ -7,6 +7,7 @@ import { ToastrModule } from "ngx-toastr";
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { componentesMaterial } from './utils/material.module';
 import {
   ComponentesModule,
   entryComponentes
@@ -20,6 +21,7 @@ import { API } from "./utils/api";
 @NgModule({
   declarations: [InicioComponent, AppComponent],
   imports: [
+    componentesMaterial,
     BrowserModule,
     ComponentesModule,
     BrowserAnimationsModule,
@@ -49,4 +51,4 @@ import { API } from "./utils/api";
   entryComponents: [entryComponentes],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

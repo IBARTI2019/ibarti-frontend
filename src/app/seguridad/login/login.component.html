@@ -1,8 +1,48 @@
-Iniciar
+<!-- Iniciar
 <form (ngSubmit)="doLogin(usuario)">
-  <input id="nro_personal" name="nro_personal" type="text" [(ngModel)]="usuario.nro_personal" title="Ej: 1234" />
+  <input id="username" name="username" type="text" [(ngModel)]="usuario.username" title="Ej: 1234" />
   <br />
   <input id="password" name="password" type="password" [(ngModel)]="usuario.password" title="Ej: abc1234" />
   <br />
   <button type="submit" class="btn btn-safe">Ingresar</button>
-</form>
+</form> -->
+
+
+<div class="login-box">
+  <img src="../../../assets/img/ibarti.jpg" class="logo-login" alt="" srcset="">
+  <h1>IB-MAPS</h1>
+  <form [formGroup]="formData" (ngSubmit)="!!!doLogin(formData.value.username)">
+    <mat-form-field>
+      <input matInput required placeholder="Usuario" formControlName="username">
+      <mat-error *ngIf="!!formData.controls.username.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" required placeholder="Contraseña" formControlName="password">
+      <mat-error *ngIf="!!formData.controls.password.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <div class="wrapper">
+      <mat-form-field>
+        <input matInput type="text" required placeholder="codigo verificacion" formControlName="verif">
+        <mat-error *ngIf="!!formData.controls.verif.hasError('required')">
+          El campo es requerido
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <div *ngIf="!sendCode.send">
+          <button mat-button type="button" color="primary" (click)="sendCode.send=!sendCode.send">Enviar codigo</button>
+        </div>
+        <div *ngIf="sendCode.send" class="send">
+          <mat-spinner (click)="sendCode.send=!sendCode.send"></mat-spinner>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" mat-button color="primary" [disabled]="formData.invalid">Ingresar</button>
+  </form>
+  <a [routerLink]="['/recuperatePass']"> Recuperar Contraseña</a>
+  <!-- <button type="button"    mat-button>Ingresar</button> -->
+</div>
