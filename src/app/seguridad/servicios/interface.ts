@@ -1,20 +1,24 @@
 export interface Usuario {
   id?: string;
   jwt_id?: string;
-  password?: string;
-  nro_personal?: string;
-  nombre_completo?: string;
+  username?: string;
   nombre?: string;
   apellido?: string;
-  permisos?: string[];
+  password?: string;
+  last_password?: string;
+  fec_mod_pass?: Date;
   roles?: Rol[] | string[];
-  password2?: string;
-  nuevo_password?: string;
-  repetir_nuevo_password?: string;
-  estado?: number;
-  estado_str?: string;
+  permisos?: string[];
+  telefono?: string;
+  ip?: string;
+  email?: string;
+  estado?: string;
   last_login?: Date;
-  fecha_creacion?: Date;
+  loggedIn?: boolean;
+  accesToken?: string;
+  confirmCode?: string;
+  createdDate?: Date;
+  updatedDate?: Date;
 }
 
 export interface Permiso {

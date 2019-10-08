@@ -14,19 +14,10 @@ import { UsuarioEditarComponent } from './usuario/usuario-editar/usuario-editar.
 import { RolEditarComponent } from './rol/rol-editar/rol-editar.component';
 import { RolCrearComponent } from './rol/rol-crear/rol-crear.component';
 import { RolComponent } from './rol/rol.component';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDialogModule,
-  MatInputModule,
-  MatTableModule,
-  MatToolbarModule,
-  MatMenuModule,
-  MatIconModule,
-  MatProgressSpinnerModule
-} from '@angular/material';
+import { componentesMaterial } from '../utils/material.module';
 import { PermisoCrearComponent } from './permiso/permiso-crear/permiso-crear.component';
 import { PermisoComponent } from './permiso/permiso.component';
+import { ValidacionUsuarioComponent } from './validacion-usuario/validacion-usuario.component';
 
 
 @NgModule({
@@ -42,7 +33,8 @@ import { PermisoComponent } from './permiso/permiso.component';
     RolCrearComponent,
     RolComponent,
     PermisoCrearComponent,
-    PermisoComponent
+    PermisoComponent,
+    ValidacionUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -50,15 +42,7 @@ import { PermisoComponent } from './permiso/permiso.component';
     ReactiveFormsModule,
     ComponentesModule,
     SeguridadRoutingModule,
-    MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatInputModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatProgressSpinnerModule
+    componentesMaterial
   ]
 })
 export class SeguridadModule { }

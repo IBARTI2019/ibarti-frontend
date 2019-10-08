@@ -9,15 +9,16 @@ import {UsuarioEditarComponent} from './usuario/usuario-editar/usuario-editar.co
 
 const routes: Routes = [
   {
+
     path: 'login',
     data: {omitirPermiso: true},
     children: [
       {path: '', component: LoginComponent},
-      {
-        path: 'nueva-contrasenna',
-        data: {omitirPermiso: true},
-        component: NuevaContrasennaComponent
-      },
+      // {
+      //   path: 'nueva-contrasenna/:id',
+      //   data: {omitirPermiso: true},
+      //   component: NuevaContrasennaComponent
+      // },
       {
         path: 'cambio-contrasenna',
         data: {omitirPermiso: true},
@@ -31,7 +32,7 @@ const routes: Routes = [
       breadcrumb: 'Lista'
     },
     children: [
-      {path: '', component: UsuarioComponent},
+      // {path: '', component: UsuarioComponent},
       {path: 'crear', component: UsuarioCrearComponent},
       {path: 'editar/:id', component: UsuarioEditarComponent}
     ]

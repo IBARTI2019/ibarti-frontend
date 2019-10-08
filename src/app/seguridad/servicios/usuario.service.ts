@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { API } from '../../utils/api';
 import { Usuario } from './interface';
 import { map, catchError, publishReplay, refCount } from 'rxjs/operators';
@@ -48,6 +48,10 @@ export class UsuarioService extends API<Usuario> {
     return this.usuario_actual;
   }
 
+  public getUser(template: { name: string, value: string }): Observable<Usuario> {
+    const params = new HttpParams().set(template.name, template.value);
+    return this.http.get(this.URL + 'getUser', {params});
+  }
   public actual() {
     if (this.$actual) {
       return this.$actual;
@@ -85,7 +89,7 @@ export class UsuarioService extends API<Usuario> {
   }
 
   public cambiarContrasenna(usuario: Usuario) {
-    return this.http.post(`${this.URL}cambiar_contrasenna/`, usuario);
+    return this.http.put(`${this.URL}setUserPass/${usuario.id}`, usuario);
   }
 
   tokenRefresh() {

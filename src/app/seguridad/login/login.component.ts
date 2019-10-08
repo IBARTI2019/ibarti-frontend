@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   doLogin(usuario: Usuario | { username: string; password: string }) {
     this.usuarioService.login(this.formData.value.username, this.formData.value.password).subscribe(
       (response: any) => {
-        // console.log(response);
+        console.log(response);
         // this.router.navigateByUrl('/inicio');
         this.toastrService.success('Sesión iniciada con éxito');
       },
