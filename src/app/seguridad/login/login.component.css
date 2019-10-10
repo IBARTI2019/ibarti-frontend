@@ -22,7 +22,7 @@
 .wrapper{
   display: grid;
   align-items: center;
-  grid-template-columns:auto auto;
+  grid-template-columns:auto;
   margin: 0px;
 }
 .send{
@@ -33,6 +33,7 @@
 .login-box > form{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .login-box h1 {
   margin: 0;

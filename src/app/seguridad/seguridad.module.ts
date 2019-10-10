@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UsuarioComponent } from './usuario/usuario.component';
-import { NuevaContrasennaComponent } from './login/nueva-contrasenna/nueva-contrasenna.component';
+import { NuevaContrasennaComponent } from '../componentes/nueva-contrasenna/nueva-contrasenna.component';
 import { LoginComponent } from './login/login.component';
 import { ComponentesModule } from '../componentes/componentes.module';
 import { SeguridadRoutingModule } from './seguridad-routing.module';
@@ -17,7 +17,7 @@ import { RolComponent } from './rol/rol.component';
 import { componentesMaterial } from '../utils/material.module';
 import { PermisoCrearComponent } from './permiso/permiso-crear/permiso-crear.component';
 import { PermisoComponent } from './permiso/permiso.component';
-import { ValidacionUsuarioComponent } from './validacion-usuario/validacion-usuario.component';
+import { ValidacionUsuarioComponent } from '../componentes/validacion-usuario/validacion-usuario.component';
 
 
 @NgModule({

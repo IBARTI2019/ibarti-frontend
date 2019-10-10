@@ -1,0 +1,19 @@
+
+  <div style="margin: 0px;transform: scale(0.4);" *ngIf="buscando">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="code===''">
+    Metodo:
+    <button type="button" mat-button (click)="SendCode('email')">Email</button>
+    <button type="button" mat-button (click)="SendCode('telefono')">Telefono</button>
+  </div>
+  <div *ngIf="code!=='' && !buscando">
+    <div>Se Envio un Codigo a su {{datoMetodo}}: {{metodo[datoMetodo]}}</div>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="codigo" #valid placeholder="Codigo" />
+      </mat-form-field>
+      <button type="button" mat-button (click)="validCode(codigo)">Validar</button>
+    </div>
+  </div>
+
