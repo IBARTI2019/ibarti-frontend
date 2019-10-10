@@ -1,0 +1,24 @@
+<form [formGroup]="formGroupPass" #form>
+  <mat-form-field>
+    <input matInput #pass placeholder="Contraseña" formControlName="validatorPass" required>
+    <mat-error *ngIf="!!formGroupPass.controls.validatorPass.hasError('required')">
+      El campo es requerido
+    </mat-error>
+    <mat-error *ngIf="!!formGroupPass.controls.validatorPass.hasError('TextControl')">
+      La Clave ya fue usada
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput #confirm placeholder="Confirmar Contraseña" formControlName="validatorConfirm" required>
+    <mat-error *ngIf="!!formGroupPass.controls.validatorConfirm.hasError('required')">
+      El campo es requerido
+    </mat-error>
+    <mat-error *ngIf="!!formGroupPass.controls.validatorConfirm.hasError('ControlValidator')">
+      Los campos no coiciden
+    </mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-button (click)="passSave()" [disabled]="formGroupPass.invalid">Guardar</button>
+    <button mat-button (click)="form.reset()">Borrar</button>
+  </div>
+</form>

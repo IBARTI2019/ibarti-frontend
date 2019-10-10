@@ -11,9 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   formData: FormGroup;
-  sendCode: { send: boolean, response: boolean } = { send: false, response: false };
   usuario: Usuario = {};
-
+  verif = false;
+  enviado = false;
   errors: string;
 
   constructor(
@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.formData = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      verif: ['', Validators.required]
+      password: ['', [Validators.required]]
     });
 
     if (this.usuarioService.isLoggedIn) {
@@ -35,6 +34,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  obtenerDatosUser(user: string) {
+    this.enviado = true;
+    if (user !== '') {
+      this.usuarioService.getUser({ name: 'username', value: user }).subscribe(info => {
+        this.usuario = info;
+
+      }, error => {
+        this.toastrService.error('El usuario no existe');
+        this.enviado = false;
+      });
+    } else {
+      this.toastrService.error('El usuario no puede estar vacio');
+      this.enviado = false;
+    }
+  }
   doLogin(usuario: Usuario | { username: string; password: string }) {
     this.usuarioService.login(this.formData.value.username, this.formData.value.password).subscribe(
       (response: any) => {

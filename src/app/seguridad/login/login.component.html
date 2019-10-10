@@ -25,23 +25,16 @@
       </mat-error>
     </mat-form-field>
     <div class="wrapper">
-      <mat-form-field>
-        <input matInput type="text" required placeholder="codigo verificacion" formControlName="verif">
-        <mat-error *ngIf="!!formData.controls.verif.hasError('required')">
-          El campo es requerido
-        </mat-error>
-      </mat-form-field>
-      <div>
-        <div *ngIf="!sendCode.send">
-          <button mat-button type="button" color="primary" (click)="sendCode.send=!sendCode.send">Enviar codigo</button>
-        </div>
-        <div *ngIf="sendCode.send" class="send">
-          <mat-spinner (click)="sendCode.send=!sendCode.send"></mat-spinner>
-        </div>
+      <div *ngIf="!enviado">
+        <button mat-button type="button" color="primary" (click)="obtenerDatosUser(formData.value.username)">Generar
+          Codigo</button>
       </div>
+      <div *ngIf="usuario.id && !verif" #valid>
+        <app-validacion-usuario (comprobacion)="verif=$event" [metodo]="usuario"></app-validacion-usuario>
+      </div>
+      <mat-checkbox *ngIf="verif" [disabled]="true" class="example-margin" [checked]="verif">Validado</mat-checkbox>
     </div>
-    <button type="submit" mat-button color="primary" [disabled]="formData.invalid">Ingresar</button>
+    <button type="submit" mat-button color="primary" [disabled]="formData.invalid || !verif">Ingresar</button>
   </form>
-  <a [routerLink]="['cambio-contrasenna']"> Recuperar Contraseña</a>
-  <!-- <button type="button"    mat-button>Ingresar</button> -->
+  <a routerLink="/seguridad/cambio-contrasenna"> Recuperar Contraseña</a>
 </div>

@@ -1,18 +1,43 @@
 <div class="contP">
   <div class="contenedor">
     <h2>Cambio de Contraseña</h2>
-    <div>
-      <mat-form-field >
-        <input matInput #usuario placeholder="Usuario" (keydown.enter)="comprobarUser(usuario.value)">
-      </mat-form-field>
-      <button mat-button #buscar *ngIf="!buscando" (click)="comprobarUser(usuario.value)">Buscar</button>
-    </div>
-    <div style="margin: 0px;transform: scale(0.4);" *ngIf="buscando">
-      <mat-spinner></mat-spinner>
-    </div>
-    <div>
-      <app-nueva-contrasenna *ngIf="user.id" [UserId]="user.id">
-      </app-nueva-contrasenna>
-    </div>
+    <mat-horizontal-stepper [linear]="true"  #stepper>
+      <mat-step [completed]="false" [editable]="false">
+        <ng-template matStepLabel>Buscar Usuario</ng-template>
+        <div>
+          <form [formGroup]="FormStepperUser">
+            <mat-form-field>
+              <input matInput #usuario placeholder="Usuario" required formControlName="user">
+              <mat-error *ngIf="!!FormStepperUser.controls.user.hasError('required')">
+                El campo es requerido
+              </mat-error>
+              <div style="margin: 0px;transform: scale(0.4);" *ngIf="buscando">
+                <mat-spinner></mat-spinner>
+              </div>
+            </mat-form-field>
+            <button mat-button #buscar  *ngIf="!buscando" [disabled]="FormStepperUser.invalid"
+              (click)="comprobarUser(usuario.value,stepper)">Buscar</button>
+          </form>
+        </div>
+      </mat-step>
+      <mat-step [editable]="false" [completed]="false">
+        <ng-template matStepLabel>Comprobacion Usuario</ng-template>
+        <app-validacion-usuario *ngIf="user.id" (comprobacion)="comprobar($event,stepper)" [metodo]="user">
+        </app-validacion-usuario>
+      </mat-step>
+      <mat-step [editable]="false">
+        <ng-template matStepLabel>Cambio de Contraseña</ng-template>
+        <div>
+          <app-nueva-contrasenna (Save)="comprobar($event,stepper)" *ngIf="user.id" [UserId]="user.id">
+          </app-nueva-contrasenna>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Listo</ng-template>
+        <h1>Guardado con Exito</h1>
+        <button mat-button>Listo</button>
+        <button mat-button (click)="stepper.reset()">Resetear</button>
+      </mat-step>
+    </mat-horizontal-stepper>
   </div>
 </div>

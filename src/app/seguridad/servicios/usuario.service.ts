@@ -11,6 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class UsuarioService extends API<Usuario> {
   protected URL = `${this.URL_API}seguridad/usuario/`;
+  // tslint:disable-next-line: variable-name
   private usuario_actual: BehaviorSubject<Usuario> = new BehaviorSubject(null);
   private $actual: Observable<Usuario>;
 
@@ -21,6 +22,10 @@ export class UsuarioService extends API<Usuario> {
     private jwtHelperService: JwtHelperService
   ) {
     super(http);
+  }
+
+  public sendMail(config: { to: string, subject: string, text: string, html: string }) {
+    return this.http.post(`${this.URL_API}sendMail`, config);
   }
 
   public login(username: string, password: string) {
@@ -50,7 +55,7 @@ export class UsuarioService extends API<Usuario> {
 
   public getUser(template: { name: string, value: string }): Observable<Usuario> {
     const params = new HttpParams().set(template.name, template.value);
-    return this.http.get(this.URL + 'getUser', {params});
+    return this.http.get(this.URL + 'getUser', { params });
   }
   public actual() {
     if (this.$actual) {

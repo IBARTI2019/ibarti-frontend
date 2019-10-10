@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UsuarioService } from '../../servicios/usuario.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UsuarioService } from '../../seguridad/servicios/usuario.service';
 // validar campos pass y confimPass de un form group
-import { MatchValidator } from '../../../utils/validator';
+import { MatchValidator } from '../../utils/validator';
 
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from '../../servicios/interface';
+import { Usuario } from '../../seguridad/servicios/interface';
 @Component({
   selector: 'app-nueva-contrasenna',
   templateUrl: './nueva-contrasenna.component.html',
@@ -14,7 +14,8 @@ import { Usuario } from '../../servicios/interface';
 export class NuevaContrasennaComponent implements OnInit {
   public formGroupPass: FormGroup;
   myValidator = new MatchValidator();
-  @Input() UserId: string; //| Usuario;
+  @Input() UserId: string;
+  @Output() Save = new EventEmitter<boolean>();
   userInform: Usuario = {};
   constructor(private userService: UsuarioService, private forms: FormBuilder, private toastrService: ToastrService) { }
   ngOnInit() {
@@ -45,6 +46,7 @@ export class NuevaContrasennaComponent implements OnInit {
     this.userInform.fec_mod_pass = new Date();
     this.userService.cambiarContrasenna(this.userInform).subscribe(resp => {
       this.toastrService.success('Guardado con éxito');
+      this.Save.emit(true);
     }, error => {
       const errors = error.error.message;
       this.toastrService.error(errors);
