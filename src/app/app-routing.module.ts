@@ -7,9 +7,9 @@ import { InicioComponent } from "./inicio/inicio.component";
 const routes: Routes = [
   {
     path: "",
-    canActivate: [PermisoGuard],
-    canActivateChild: [PermisoGuard],
-    runGuardsAndResolvers: "always",
+    // canActivate: [PermisoGuard],
+    // canActivateChild: [PermisoGuard],
+    // runGuardsAndResolvers: "always",
     children: [
       { path: "", redirectTo: "inicio", pathMatch: "full" },
       {

@@ -60,7 +60,7 @@ export class PermisoGuard implements CanActivate, CanActivateChild {
     ) {
       return true;
     } else if (!this.usuarioService.isLoggedIn) {
-      return this.router.parseUrl("/seguridad/login");
+      return this.router.parseUrl('/seguridad/login');
     }
     return this.usuarioService.actual().pipe(
       map(usuario => {
@@ -73,17 +73,17 @@ export class PermisoGuard implements CanActivate, CanActivateChild {
             const acceso = usuario.permisos.indexOf(path) > -1;
             if (!acceso) {
               this.toastrService.error(
-                "No tiene permiso para acceder a esta funcionalidad",
-                "Error de permisos"
+                'No tiene permiso para acceder a esta funcionalidad',
+                'Error de permisos'
               );
             } else {
               // Esta este valor es no tener que volver a calcular
               // el path absoluto de la url
               this.globalService.push(ABSOLUTE_PATH, path);
             }
-            return acceso ? acceso : this.router.parseUrl("/inicio");
+            return acceso ? acceso : this.router.parseUrl('/inicio');
           } else {
-            return this.router.parseUrl("/inicio");
+            return this.router.parseUrl('/inicio');
           }
         } else {
           return true;

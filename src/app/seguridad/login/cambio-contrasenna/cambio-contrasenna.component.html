@@ -1,1 +1,18 @@
-
+<div class="contP">
+  <div class="contenedor">
+    <h2>Cambio de Contraseña</h2>
+    <div>
+      <mat-form-field >
+        <input matInput #usuario placeholder="Usuario" (keydown.enter)="comprobarUser(usuario.value)">
+      </mat-form-field>
+      <button mat-button #buscar *ngIf="!buscando" (click)="comprobarUser(usuario.value)">Buscar</button>
+    </div>
+    <div style="margin: 0px;transform: scale(0.4);" *ngIf="buscando">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div>
+      <app-nueva-contrasenna *ngIf="user.id" [UserId]="user.id">
+      </app-nueva-contrasenna>
+    </div>
+  </div>
+</div>

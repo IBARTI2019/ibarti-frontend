@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { API } from "../../utils/api";
-import { Usuario } from "./interface";
-import { map, catchError, publishReplay, refCount } from "rxjs/operators";
-import { Observable, Observer, BehaviorSubject } from "rxjs";
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { API } from '../../utils/api';
+import { Usuario } from './interface';
+import { map, catchError, publishReplay, refCount } from 'rxjs/operators';
+import { Observable, Observer, BehaviorSubject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class UsuarioService extends API<Usuario> {
   protected URL = `${this.URL_API}seguridad/usuario/`;
@@ -23,11 +23,11 @@ export class UsuarioService extends API<Usuario> {
     super(http);
   }
 
-  public login(nro_personal: string, password: string) {
+  public login(username: string, password: string) {
     // En el login se quitan los ceros a la izquierda para números de personal
     return this.http
       .post(`${this.URL}authenticate`, {
-        nro_personal,
+        username,
         password
       })
       .pipe(
@@ -41,13 +41,17 @@ export class UsuarioService extends API<Usuario> {
   }
 
   public activar(id: string) {
-    return this.http.patch(this.URL + id + "/activar/", {});
+    return this.http.patch(this.URL + id + '/activar/', {});
   }
 
   public get getUsuario(): BehaviorSubject<Usuario> {
     return this.usuario_actual;
   }
 
+  public getUser(template: { name: string, value: string }): Observable<Usuario> {
+    const params = new HttpParams().set(template.name, template.value);
+    return this.http.get(this.URL + 'getUser', {params});
+  }
   public actual() {
     if (this.$actual) {
       return this.$actual;
@@ -79,13 +83,13 @@ export class UsuarioService extends API<Usuario> {
     return !this.jwtHelperService.isTokenExpired();
   }
 
-  public valNroPersonal(nro_personal: any) {
+  public valNroPersonal(username: any) {
     // tslint:disable-next-line: radix
-    return !isNaN(nro_personal) ? "" + parseInt(nro_personal) : nro_personal;
+    return !isNaN(username) ? '' + parseInt(username) : username;
   }
 
   public cambiarContrasenna(usuario: Usuario) {
-    return this.http.post(`${this.URL}cambiar_contrasenna/`, usuario);
+    return this.http.put(`${this.URL}setUserPass/${usuario.id}`, usuario);
   }
 
   tokenRefresh() {
