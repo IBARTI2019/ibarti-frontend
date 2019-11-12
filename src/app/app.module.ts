@@ -12,7 +12,6 @@ import {
   ComponentesModule,
   entryComponentes
 } from './componentes/componentes.module';
-import { SeguridadModule } from './seguridad/seguridad.module';
 import { Error401Interceptor } from './utils/interceptor';
 import { InicioComponent } from './inicio/inicio.component';
 import { environment } from '../environments/environment';
@@ -27,7 +26,6 @@ import { API } from './utils/api';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    SeguridadModule,
     ToastrModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,

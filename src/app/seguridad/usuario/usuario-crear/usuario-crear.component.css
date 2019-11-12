@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 97vw;
+  height: 97vh;
+  min-height: 97vh;
+  /* overflow: scroll; */
+}
+
+.container  form {
+  overflow-y: auto;
+  background: white;
+  width: 90vw;
+  height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* min-height: 50vh; */
+}
+
+.container > form > mat-form-field {
+   width: 50%;
+}
+

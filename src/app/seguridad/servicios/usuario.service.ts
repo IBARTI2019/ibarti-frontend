@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { API } from '../../utils/api';
 import { Usuario } from './interface';
 import { map, catchError, publishReplay, refCount } from 'rxjs/operators';
-import { Observable, Observer, BehaviorSubject } from 'rxjs';
+import { Observable, Observer, BehaviorSubject, config } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -24,9 +24,11 @@ export class UsuarioService extends API<Usuario> {
     super(http);
   }
 
+  // tslint:disable-next-line: no-shadowed-variable
   public sendMail(config: { to: string, subject: string, text: string, html: string }) {
     return this.http.post(`${this.URL_API}sendMail`, config);
   }
+
 
   public login(username: string, password: string) {
     // En el login se quitan los ceros a la izquierda para números de personal
@@ -56,6 +58,14 @@ export class UsuarioService extends API<Usuario> {
   public getUser(template: { name: string, value: string }): Observable<Usuario> {
     const params = new HttpParams().set(template.name, template.value);
     return this.http.get(this.URL + 'getUser', { params });
+  }
+
+  public getUserId(id: string): Observable<Usuario> {
+    return this.http.get(this.URL + 'getId/' + id);
+  }
+
+  public getUsers() {
+    return this.http.get(this.URL);
   }
   public actual() {
     if (this.$actual) {

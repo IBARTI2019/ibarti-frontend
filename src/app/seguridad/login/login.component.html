@@ -1,40 +1,31 @@
-<!-- Iniciar
-<form (ngSubmit)="doLogin(usuario)">
-  <input id="username" name="username" type="text" [(ngModel)]="usuario.username" title="Ej: 1234" />
-  <br />
-  <input id="password" name="password" type="password" [(ngModel)]="usuario.password" title="Ej: abc1234" />
-  <br />
-  <button type="submit" class="btn btn-safe">Ingresar</button>
-</form> -->
-
-
 <div class="login-box">
   <img src="../../../assets/img/ibarti.jpg" class="logo-login" alt="" srcset="">
   <h1>IB-MAPS</h1>
-  <form [formGroup]="formData" (ngSubmit)="!!!doLogin(formData.value.username)">
+  <form [formGroup]="formData" (ngSubmit)="doLogin(formData.value.username)">
     <mat-form-field>
-      <input matInput required placeholder="Usuario" formControlName="username">
+      <input matInput required placeholder="Usuario" maxlength="8" formControlName="username">
       <mat-error *ngIf="!!formData.controls.username.hasError('required')">
         El campo es requerido
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" required placeholder="Contraseña" formControlName="password">
-      <mat-error *ngIf="!!formData.controls.password.hasError('required')">
+      <input matInput type="password" placeholder="Contraseña" formControlName="password">
+      <!-- <mat-error *ngIf="!!formData.controls.password.hasError('required')">
         El campo es requerido
-      </mat-error>
+      </mat-error> -->
     </mat-form-field>
     <div class="wrapper">
+
       <div *ngIf="!enviado">
-        <button mat-button type="button" color="primary" (click)="obtenerDatosUser(formData.value.username)">Generar
-          Codigo</button>
+        <button mat-button type="button" color="primary" (click)="obtenerDatosUser(formData.value.username)">Validar</button>
       </div>
+      <mat-checkbox  [disabled]="true" class="example-margin" [checked]="verif">Validado</mat-checkbox>
       <div *ngIf="usuario.id && !verif" #valid>
         <app-validacion-usuario (comprobacion)="verif=$event" [metodo]="usuario"></app-validacion-usuario>
       </div>
-      <mat-checkbox *ngIf="verif" [disabled]="true" class="example-margin" [checked]="verif">Validado</mat-checkbox>
     </div>
-    <button type="submit" mat-button color="primary" [disabled]="formData.invalid || !verif">Ingresar</button>
+    <button type="submit" mat-stroked-button color="primary" [disabled]="formData.invalid || !verif">Ingresar</button>
   </form>
-  <a routerLink="/seguridad/cambio-contrasenna"> Recuperar Contraseña</a>
+  <!-- <a routerLink="/seguridad/cambio-contrasenna"> Recuperar Contraseña</a> -->
+  <button type="button" mat-button color="primary" (click)="openDialog()"> Recuperar Contraseña</button >
 </div>

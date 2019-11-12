@@ -18,6 +18,9 @@ import { componentesMaterial } from '../utils/material.module';
 import { PermisoCrearComponent } from './permiso/permiso-crear/permiso-crear.component';
 import { PermisoComponent } from './permiso/permiso.component';
 import { ValidacionUsuarioComponent } from '../componentes/validacion-usuario/validacion-usuario.component';
+import { ModalRecuperarCComponent } from './login/modal-recuperar-c/modal-recuperar-c.component';
+import { ModalRenovarCComponent } from './login/modal-renovar-c/modal-renovar-c.component';
+import { ListadoUsuarioComponent } from './usuario/listado-usuario/listado-usuario.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { ValidacionUsuarioComponent } from '../componentes/validacion-usuario/va
     RolComponent,
     PermisoCrearComponent,
     PermisoComponent,
-    ValidacionUsuarioComponent
+    ValidacionUsuarioComponent,
+    ModalRecuperarCComponent,
+    ModalRenovarCComponent,
+    ListadoUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +49,7 @@ import { ValidacionUsuarioComponent } from '../componentes/validacion-usuario/va
     ComponentesModule,
     SeguridadRoutingModule,
     componentesMaterial
-  ]
+  ],
+  entryComponents: [ModalRecuperarCComponent, ModalRenovarCComponent]
 })
 export class SeguridadModule { }

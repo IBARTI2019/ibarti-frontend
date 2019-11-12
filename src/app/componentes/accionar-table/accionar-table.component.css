@@ -1,0 +1,20 @@
+th.mat-sort-header-sorted {
+  color: black;
+}
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 16px;
+}
+
+div {
+  padding: 1px;
+  position: relative;
+  max-height: 500px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  /*align-items: center; */
+}

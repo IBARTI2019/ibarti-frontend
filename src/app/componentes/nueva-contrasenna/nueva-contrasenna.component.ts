@@ -23,6 +23,7 @@ export class NuevaContrasennaComponent implements OnInit {
       (
         { validatorPass: ['', [Validators.required]], validatorConfirm: ['', [Validators.required]] });
     this.userService.getUser({ name: '_id', value: this.UserId }).subscribe((info) => {
+      console.log(info);
       this.userInform = info;
       this.formGroupPass = this.forms.group
         (
@@ -31,7 +32,6 @@ export class NuevaContrasennaComponent implements OnInit {
             validators: [this.myValidator.ControlValidator('validatorPass', 'validatorConfirm')],
           }
         );
-      console.log(info);
     }, (error) => {
       this.toastrService.error(error);
     });

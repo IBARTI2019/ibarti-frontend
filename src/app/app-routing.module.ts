@@ -1,28 +1,28 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { PermisoGuard } from "./utils/permiso.guard";
-import { RutasResolve } from "./utils/resolve.service";
-import { InicioComponent } from "./inicio/inicio.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { PermisoGuard } from './utils/permiso.guard';
+import { RutasResolve } from './utils/resolve.service';
+import { InicioComponent } from './inicio/inicio.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     // canActivate: [PermisoGuard],
     // canActivateChild: [PermisoGuard],
-    // runGuardsAndResolvers: "always",
+    // runGuardsAndResolvers: 'always',
     children: [
-      { path: "", redirectTo: "inicio", pathMatch: "full" },
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
       {
-        path: "inicio",
+        path: 'inicio',
         children: [
           {
-            path: "",
+            path: '',
             // data: { omitirPermiso: true },
             component: InicioComponent
             // resolve: { items: RutasResolve }
           },
           {
-            path: ":titulo/:id",
+            path: ':titulo/:id',
             data: { omitirPermiso: true },
             component: InicioComponent,
             resolve: { items: RutasResolve }
@@ -30,13 +30,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: "seguridad",
+        path: 'seguridad',
         loadChildren: () =>
-          import("./seguridad/seguridad.module").then(m => m.SeguridadModule)
+          import('./seguridad/seguridad.module').then(m => m.SeguridadModule)
       }
     ]
   },
-  { path: "**", redirectTo: "/inicio" }
+  { path: '**', redirectTo: '/inicio' }
 ];
 
 @NgModule({

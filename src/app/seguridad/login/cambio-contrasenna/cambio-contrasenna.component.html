@@ -1,7 +1,7 @@
 <div class="contP">
   <div class="contenedor">
-    <h2>Cambio de Contraseña</h2>
-    <mat-horizontal-stepper [linear]="true"  #stepper>
+    <!-- <h2>Cambio de Contraseña</h2> -->
+    <mat-horizontal-stepper [linear]="true" [selectedIndex]="selected" #stepper>
       <mat-step [completed]="false" [editable]="false">
         <ng-template matStepLabel>Buscar Usuario</ng-template>
         <div>
@@ -15,12 +15,12 @@
                 <mat-spinner></mat-spinner>
               </div>
             </mat-form-field>
-            <button mat-button #buscar  *ngIf="!buscando" [disabled]="FormStepperUser.invalid"
+            <button mat-button #buscar *ngIf="!buscando" [disabled]="FormStepperUser.invalid"
               (click)="comprobarUser(usuario.value,stepper)">Buscar</button>
           </form>
         </div>
       </mat-step>
-      <mat-step [editable]="false" [completed]="false">
+      <mat-step [editable]="false" [completed]="false" #paso>
         <ng-template matStepLabel>Comprobacion Usuario</ng-template>
         <app-validacion-usuario *ngIf="user.id" (comprobacion)="comprobar($event,stepper)" [metodo]="user">
         </app-validacion-usuario>
@@ -35,7 +35,7 @@
       <mat-step>
         <ng-template matStepLabel>Listo</ng-template>
         <h1>Guardado con Exito</h1>
-        <button mat-button>Listo</button>
+        <button mat-button (click)="guardado()">Listo</button>
         <button mat-button (click)="stepper.reset()">Resetear</button>
       </mat-step>
     </mat-horizontal-stepper>

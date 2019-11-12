@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ValidacionUsuarioComponent {
   @Input() metodo: object;
   @Output() comprobacion = new EventEmitter<boolean>();
-  protected code = '';
+  code = '';
   datoMetodo = '';
   buscando = false;
   codigo: string;

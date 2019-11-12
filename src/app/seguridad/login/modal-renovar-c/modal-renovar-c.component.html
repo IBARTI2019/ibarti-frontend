@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Renovacion de Contraseña
+  <button type="button" mat-mini-fab color="warn" (click)="onNoClick()">X</button>
+</h1>
+
+<div [ngClass]="{'close':true}">
+
+</div>
+<div mat-dialog-content>
+  <app-cambio-contrasenna (listo)="onNoClick()" [idUser]="data"></app-cambio-contrasenna>
+</div>

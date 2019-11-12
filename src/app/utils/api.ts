@@ -5,7 +5,7 @@ import {Observable, throwError} from 'rxjs';
 import {environment as env} from '../../environments/environment';
 
 /**
- * Case abstracta para implentar funciones establecidas para
+ * Clase abstracta para implentar funciones establecidas para
  * el CRUD de cualquier servicio, al heredar esta clase debe
  * valorizar el campo URI
  */

@@ -4,6 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Usuario } from '../servicios/interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalRecuperarCComponent } from './modal-recuperar-c/modal-recuperar-c.component';
+import { ModalRenovarCComponent } from './modal-renovar-c/modal-renovar-c.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   formData: FormGroup;
+  formD: FormGroup;
   usuario: Usuario = {};
   verif = false;
   enviado = false;
@@ -20,13 +24,18 @@ export class LoginComponent implements OnInit {
     private usuarioService: UsuarioService,
     private toastrService: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['']
+    });
+
+    this.formD = this.formBuilder.group({
+      profile: ['']
     });
 
     if (this.usuarioService.isLoggedIn) {
@@ -34,8 +43,22 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ModalRecuperarCComponent, {
+      width: '800px',
+      height: '500px',
+      data: {},
+      disableClose: true
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.animal = result;
+    // });
+  }
+
   obtenerDatosUser(user: string) {
-    this.enviado = true;
+    // this.enviado = true;
     if (user !== '') {
       this.usuarioService.getUser({ name: 'username', value: user }).subscribe(info => {
         this.usuario = info;
@@ -49,12 +72,26 @@ export class LoginComponent implements OnInit {
       this.enviado = false;
     }
   }
+
+  ///////////////////
   doLogin(usuario: Usuario | { username: string; password: string }) {
     this.usuarioService.login(this.formData.value.username, this.formData.value.password).subscribe(
       (response: any) => {
-        console.log(response);
-        // this.router.navigateByUrl('/inicio');
-        this.toastrService.success('Sesión iniciada con éxito');
+        if (response.result) {
+          switch (response.result) {
+            case 'FIRST_LOGIN':
+              this.dialog.open(ModalRenovarCComponent, {
+                width: '800px',
+                height: '500px',
+                data: response.data,
+                disableClose: true
+              });
+              break;
+          }
+        } else {
+          this.router.navigateByUrl('/inicio');
+          this.toastrService.success('Sesión iniciada con éxito');
+        }
       },
       (result: any) => {
         console.log(result);

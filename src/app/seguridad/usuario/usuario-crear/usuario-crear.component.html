@@ -1,1 +1,43 @@
-Crear Usuario
+<div class="container">
+  <form [formGroup]="formUser" (submit)="permisos.modificar?updateUser():permisos.agregar?saveUser():null">
+    <h2>{{titulo}}</h2>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nombres" required formControlName="nombre">
+      <mat-error *ngIf="!!formUser.controls.nombre.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Apellidos" required formControlName="apellido">
+      <mat-error *ngIf="!!formUser.controls.apellido.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Usuario" required formControlName="username">
+      <mat-error *ngIf="!!formUser.controls.username.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" placeholder="Correo" required formControlName="email">
+      <mat-error *ngIf="!!formUser.controls.email.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Telefono" required formControlName="telefono">
+      <mat-error *ngIf="!!formUser.controls.telefono.hasError('required')">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+    <span>
+      <button mat-button type="submit" color="primary" [disabled]="formUser.invalid" *ngIf="permisos.agregar">Guardar</button>
+      <button mat-button type="submit" color="primary" [disabled]="formUser.invalid" *ngIf="permisos.modificar">Modificar</button>
+      <button mat-button type="button" color="warn"  *ngIf="permisos.eliminar" (click)="deleteUser()">Eliminar</button>
+      <button mat-button type="button" color="warn" (click)="formUser.reset()" *ngIf="permisos.agregar">Limpiar</button>
+      <!-- <button mat-button color="warn" (click)="formUser.reset()">Volver</button> -->
+    </span>
+
+  </form>
+</div>

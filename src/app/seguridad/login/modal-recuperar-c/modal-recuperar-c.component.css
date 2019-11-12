@@ -1,0 +1,11 @@
+.close{
+  right: 25%;
+  top: 15%;
+  position: absolute;
+
+}
+h1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,6 @@
+<div class="container">
+  <h1>Listado de Usuarios</h1>
+  <mat-divider></mat-divider>
+  <app-accionar-table [config]="config" *ngIf="data.length>0" (emiter)="accionar($event)">
+  </app-accionar-table>
+</div>

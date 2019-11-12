@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -7,13 +7,13 @@ import {
   RouterStateSnapshot,
   ActivatedRoute,
   UrlTree
-} from "@angular/router";
-import { UsuarioService } from "../seguridad/servicios/usuario.service";
-import { ToastrService } from "ngx-toastr";
-import { GlobalService, ABSOLUTE_PATH } from "./global.service";
-import { pathFromRootConcat } from "./function";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+} from '@angular/router';
+import { UsuarioService } from '../seguridad/servicios/usuario.service';
+import { ToastrService } from 'ngx-toastr';
+import { GlobalService, ABSOLUTE_PATH } from './global.service';
+import { pathFromRootConcat } from './function';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /**
  * Guard para validar las rutas con los workflows que estan en
@@ -33,7 +33,7 @@ import { map } from "rxjs/operators";
  * ```
  */
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class PermisoGuard implements CanActivate, CanActivateChild {
   constructor(
